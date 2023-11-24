@@ -1,0 +1,8 @@
+{
+  "name": "Hue Highway",
+  "short_name": "Hue Highway",
+  "icons": [],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}

@@ -1,0 +1,19 @@
+.root {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.title {
+  margin-left: 3rem;
+  font-size: 2.25rem;
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+  color: #dc6fc5;
+}
+
+.colorSquares {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+}

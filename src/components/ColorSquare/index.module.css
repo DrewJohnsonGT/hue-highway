@@ -1,0 +1,32 @@
+.square {
+  border-width: 2px;
+  /* border-style: solid; */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 #00000033;
+}
+
+.button {
+  flex: 1;
+  font-size: 16px;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 1rem 0;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  background-color: transparent;
+}
+
+.count {
+  font-size: 2rem;
+  margin: 1rem;
+  color: inherit;
+  font-weight: bold;
+  text-align: center;
+}
