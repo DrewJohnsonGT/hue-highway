@@ -30,3 +30,31 @@
   font-weight: bold;
   text-align: center;
 }
+
+@keyframes shake-and-rotate {
+  0%,
+  100% {
+    transform: translateX(0) rotate(0);
+  }
+  25% {
+    transform: translateX(-2px) rotate(-2deg);
+  }
+  50% {
+    transform: translateX(2px) rotate(2deg);
+  }
+  75% {
+    transform: translateX(-2px) rotate(-2deg);
+  }
+}
+
+.shake {
+  animation: shake-and-rotate 1s ease-in-out infinite;
+}
+
+.removeButton {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 1.75rem;
+  height: 1.75rem;
+}

@@ -1,5 +1,6 @@
 import { Analytics } from '@vercel/analytics/react';
 import { Baloo_2 } from 'next/font/google';
+import { Header } from '~/components';
 import { SITE_TITLE } from '~/constants';
 import { AppContextProvider } from '~/context/provider';
 import './index.css';
@@ -33,7 +34,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <meta name="theme-color" content="#ffffff" />
       </head>
       <body className={font.className}>
-        <AppContextProvider>{children}</AppContextProvider>
+        <AppContextProvider>
+          <Header />
+          {children}
+        </AppContextProvider>
         <Analytics />
       </body>
     </html>

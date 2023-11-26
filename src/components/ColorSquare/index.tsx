@@ -1,10 +1,13 @@
-import { FaMinus, FaPlus } from 'react-icons/fa';
+import { FaMinus, FaPlus, FaRegTimesCircle } from 'react-icons/fa';
+import clsx from 'clsx';
 import { getContrastColor } from '~/util/getContrastColor';
 import styles from './index.module.css';
 
 interface ColorSquareProps {
   color: string;
   count: number;
+  isEditMode: boolean;
+  handleRemove: () => void;
   increment: () => void;
   decrement: () => void;
 }
@@ -13,23 +16,31 @@ export const ColorSquare = ({
   color,
   count,
   decrement,
+  handleRemove,
   increment,
+  isEditMode,
 }: ColorSquareProps) => {
   const contrastingColor = getContrastColor(color);
   return (
     <div
-      className={styles.square}
+      className={clsx(styles.square, isEditMode && styles.shake)}
       style={{
+        animationDelay: `${Math.random() * 0.5}s`,
         backgroundColor: `${color}AA`,
         borderColor: contrastingColor,
         color: contrastingColor,
-      }}
-    >
+      }}>
+      {isEditMode && (
+        <FaRegTimesCircle
+          className={styles.removeButton}
+          style={{ color: contrastingColor }}
+          onClick={handleRemove}
+        />
+      )}
       <p className={styles.count}>{count}</p>
       <div
         className={styles.buttonWrapper}
-        style={{ borderTop: `1px solid ${contrastingColor}` }}
-      >
+        style={{ borderTop: `1px solid ${contrastingColor}` }}>
         <div className={styles.button} onClick={decrement}>
           <FaMinus />
         </div>

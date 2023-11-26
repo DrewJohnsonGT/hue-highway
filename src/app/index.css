@@ -1,3 +1,10 @@
+:root {
+  --main: #dc6fc5;
+  --green-main: #4caf50;
+  --green-light: #8bc34a;
+  --green-dark: #388e3c;
+}
+
 html,
 body {
   margin: 0;

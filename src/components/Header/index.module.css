@@ -1,0 +1,59 @@
+.root {
+  position: relative;
+}
+
+.title {
+  margin-left: 3rem;
+  font-size: 2.25rem;
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+  color: var(--main);
+}
+
+.floatingActionButton {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--green-main);
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.menu {
+  position: absolute;
+  top: 3rem;
+  right: 1rem;
+  z-index: 99;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 100px;
+}
+
+.menuItem {
+  font-size: 1rem;
+  padding: 0.5rem;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.menuItem svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.menuItem:hover {
+  background-color: #f5f5f5;
+}

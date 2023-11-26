@@ -1,5 +1,5 @@
 .button {
-  background-color: #4caf50;
+  background-color: var(--green-main);
   color: white;
   padding: 12px 24px;
   border: none;
@@ -16,7 +16,7 @@
 }
 
 .button:hover {
-  background-color: #45a049;
+  background-color: var(--green-dark);
 }
 
 .picker {

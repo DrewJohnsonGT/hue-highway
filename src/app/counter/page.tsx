@@ -2,12 +2,11 @@
 
 import { v4 as uuid } from 'uuid';
 import { AddColor, ColorSquare } from '~/components';
-import { SITE_TITLE } from '~/constants';
 import { useAppContext } from '~/context/useAppContext';
 import styles from './page.module.css';
 
 const CountingPage = () => {
-  const { colors, setColors } = useAppContext();
+  const { colors, isEditMode, setColors } = useAppContext();
 
   const handleIncrement = (id: string) => {
     const newColors = colors.map((color) => {
@@ -47,25 +46,23 @@ const CountingPage = () => {
     setColors(newColors);
   };
 
-  const sortedColors = colors.sort((a, b) => {
-    if (a.count > b.count) {
-      return -1;
-    }
-    if (a.count < b.count) {
-      return 1;
-    }
-    return 0;
-  });
+  const handleRemove = (id: string) => {
+    const newColors = colors.filter((color) => color.id !== id);
+    setColors(newColors);
+  };
 
   return (
     <div className={styles.root}>
-      <h1 className={styles.title}>{SITE_TITLE}</h1>
       <div className={styles.colorSquares}>
-        {sortedColors.map((color) => (
+        {colors.map((color) => (
           <ColorSquare
             key={color.id}
             color={color.hex}
             count={color.count}
+            isEditMode={isEditMode}
+            handleRemove={() => {
+              handleRemove(color.id);
+            }}
             increment={() => {
               handleIncrement(color.id);
             }}
