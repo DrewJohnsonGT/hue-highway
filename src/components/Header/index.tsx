@@ -10,6 +10,7 @@ import {
   FaRegEdit,
   FaSortAmountUp,
 } from 'react-icons/fa';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SITE_TITLE } from '~/constants';
@@ -48,7 +49,16 @@ export const Header = () => {
 
   return (
     <div className={styles.root}>
-      <h1 className={styles.title}>{SITE_TITLE}</h1>
+      <span className={styles.logoAndTitle}>
+        <Image
+          src="/images/logo.jpg"
+          width={50}
+          height={50}
+          alt="logo"
+          className={styles.logo}
+        />
+        <h1 className={styles.title}>{SITE_TITLE}</h1>
+      </span>
       <div className={styles.floatingActionButton} onClick={toggleMenu}>
         {isMenuOpen ? <FaChevronDown /> : <FaBars />}
       </div>

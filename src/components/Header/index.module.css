@@ -2,8 +2,17 @@
   position: relative;
 }
 
+.logoAndTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo {
+  border-radius: 8px;
+}
+
 .title {
-  margin-left: 2rem;
   font-size: 2.25rem;
   margin-top: 1rem;
   margin-bottom: 0.25rem;
