@@ -2,7 +2,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { Baloo_2 } from 'next/font/google';
 import { Header } from '~/components';
 import { SITE_TITLE } from '~/constants';
-import { AppContextProvider } from '~/context/provider';
+import { AppProvider } from '~/context/useAppState';
 import './index.css';
 
 const font = Baloo_2({ subsets: ['latin'] });
@@ -34,10 +34,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <meta name="theme-color" content="#ffffff" />
       </head>
       <body className={font.className}>
-        <AppContextProvider>
+        <AppProvider>
           <Header />
           {children}
-        </AppContextProvider>
+        </AppProvider>
         <Analytics />
       </body>
     </html>

@@ -1,80 +1,43 @@
 'use client';
 
-import { v4 as uuid } from 'uuid';
-import { AddColor, ColorSquare } from '~/components';
-import { useAppContext } from '~/context/useAppContext';
+import { AddColor, ColorSquare, Loading } from '~/components';
+import { ActionType, useAppState } from '~/context/useAppState';
 import styles from './page.module.css';
 
 const CountingPage = () => {
-  const { colors, isEditMode, setColors } = useAppContext();
-
-  const handleIncrement = (id: string) => {
-    const newColors = colors.map((color) => {
-      if (color.id === id) {
-        return {
-          ...color,
-          count: color.count + 1,
-        };
-      }
-      return color;
-    });
-    setColors(newColors);
-  };
-
-  const handleDecrement = (id: string) => {
-    const newColors = colors.map((color) => {
-      if (color.id === id) {
-        return {
-          ...color,
-          count: color.count - 1,
-        };
-      }
-      return color;
-    });
-    setColors(newColors);
-  };
-
-  const handleAddNewColor = (newColor: string) => {
-    const newColors = [
-      ...colors,
-      {
-        count: 0,
-        hex: newColor,
-        id: uuid(),
-      },
-    ];
-    setColors(newColors);
-  };
-
-  const handleRemove = (id: string) => {
-    const newColors = colors.filter((color) => color.id !== id);
-    setColors(newColors);
-  };
+  const {
+    dispatch,
+    state: { colors, isEditMode, isLoading },
+  } = useAppState();
 
   return (
     <div className={styles.root}>
       <div className={styles.colorSquares}>
-        {colors.map((color) => (
-          <ColorSquare
-            key={color.id}
-            color={color.hex}
-            count={color.count}
-            isEditMode={isEditMode}
-            handleRemove={() => {
-              handleRemove(color.id);
-            }}
-            increment={() => {
-              handleIncrement(color.id);
-            }}
-            decrement={() => {
-              handleDecrement(color.id);
-            }}
-          />
-        ))}
+        {isLoading ? (
+          <Loading />
+        ) : (
+          colors.map((color) => (
+            <ColorSquare
+              key={color.id}
+              color={color.hex}
+              count={color.count}
+              isEditMode={isEditMode}
+              handleRemove={() => {
+                dispatch({ payload: color.id, type: ActionType.RemoveColor });
+              }}
+              increment={() => {
+                dispatch({ payload: color.id, type: ActionType.Increment });
+              }}
+              decrement={() => {
+                dispatch({ payload: color.id, type: ActionType.Decrement });
+              }}
+            />
+          ))
+        )}
       </div>
       <AddColor
         onSelectNewColor={(newColor) => {
-          handleAddNewColor(newColor);
+          dispatch({ payload: newColor, type: ActionType.AddNewColor });
         }}
       />
     </div>

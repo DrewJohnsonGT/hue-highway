@@ -13,11 +13,14 @@ import {
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SITE_TITLE } from '~/constants';
-import { useAppContext } from '~/context/useAppContext';
+import { ActionType, useAppState } from '~/context/useAppState';
 import styles from './index.module.css';
 
 export const Header = () => {
-  const { colors, isEditMode, setColors, toggleEditMode } = useAppContext();
+  const {
+    dispatch,
+    state: { isEditMode },
+  } = useAppState();
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -36,12 +39,6 @@ export const Header = () => {
     }
   };
 
-  const handleSortColors = () => {
-    const sortedColors = [...colors].sort((a, b) => b.count - a.count);
-    setColors(sortedColors);
-    setIsMenuOpen(false);
-  };
-
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
@@ -57,7 +54,11 @@ export const Header = () => {
       </div>
       {isMenuOpen && (
         <div className={styles.menu} ref={menuRef}>
-          <div className={styles.menuItem} onClick={handleSortColors}>
+          <div
+            className={styles.menuItem}
+            onClick={() => {
+              dispatch({ type: ActionType.SortColors });
+            }}>
             <FaSortAmountUp />
             Sort
           </div>
@@ -80,7 +81,9 @@ export const Header = () => {
           <div
             className={styles.menuItem}
             style={{ borderBottom: 'none' }}
-            onClick={toggleEditMode}>
+            onClick={() => {
+              dispatch({ type: ActionType.ToggleEditMode });
+            }}>
             {isEditMode ? <FaRegCheckCircle /> : <FaRegEdit />}
             {isEditMode ? 'Done' : 'Edit'}
           </div>
