@@ -33,10 +33,17 @@ export const ColorSquare = ({
       {isEditMode && (
         <FaRegTimesCircle
           className={styles.removeButton}
-          style={{ color: contrastingColor }}
+          style={{ backgroundColor: contrastingColor }}
           onClick={handleRemove}
         />
       )}
+      <div
+        className={styles.color}
+        style={{
+          backgroundColor: color,
+          border: `1px solid ${contrastingColor}`,
+        }}
+      />
       <p className={styles.count}>{count}</p>
       <div
         className={styles.buttonWrapper}

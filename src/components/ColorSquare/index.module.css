@@ -1,6 +1,5 @@
 .square {
   border-width: 2px;
-  /* border-style: solid; */
   border-radius: 8px;
   box-shadow: 0 4px 8px 0 #00000033;
 }
@@ -25,10 +24,19 @@
 
 .count {
   font-size: 2rem;
-  margin: 1rem;
+  margin: 0.25rem;
+  margin-top: 0;
   color: inherit;
   font-weight: bold;
   text-align: center;
+}
+
+.color {
+  opacity: 1;
+  margin: 0.25rem auto;
+  width: 80%;
+  height: 15px;
+  border-radius: 4px;
 }
 
 @keyframes shake-and-rotate {
