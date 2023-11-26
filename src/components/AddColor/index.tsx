@@ -13,23 +13,24 @@ export const AddColor = ({ onSelectNewColor }: AddColorProps) => {
     useState<boolean>(false);
   return (
     <div className={styles.root}>
+      {isNewColorPickerOpen && (
+        <div className={styles.pickerContainer}>
+          <SwatchesPicker
+            className={styles.picker}
+            onChange={(color) => {
+              onSelectNewColor(color.hex);
+              setIsNewColorPickerOpen(false);
+            }}
+          />
+        </div>
+      )}
       <button
         className={styles.button}
         onClick={() => {
           setIsNewColorPickerOpen(!isNewColorPickerOpen);
-        }}
-      >
+        }}>
         Add New Color
       </button>
-      {isNewColorPickerOpen && (
-        <SwatchesPicker
-          className={styles.picker}
-          onChange={(color) => {
-            onSelectNewColor(color.hex);
-            setIsNewColorPickerOpen(false);
-          }}
-        />
-      )}
     </div>
   );
 };

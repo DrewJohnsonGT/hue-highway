@@ -1,9 +1,6 @@
-.root {
-  height: 100vh;
-  overflow-y: scroll;
-}
-
 .colorSquares {
+  overflow-y: scroll;
+  height: 80vh;
   padding: 0.5rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
