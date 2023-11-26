@@ -1,6 +1,7 @@
 .square {
   border-width: 2px;
   border-radius: 8px;
+  max-height: 130px;
   box-shadow: 0 4px 8px 0 #00000033;
 }
 
@@ -32,7 +33,6 @@
 }
 
 .color {
-  opacity: 1;
   margin: 0.25rem auto;
   width: 80%;
   height: 15px;

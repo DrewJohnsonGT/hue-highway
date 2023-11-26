@@ -3,9 +3,36 @@
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
 import { Loading } from '~/components';
 import { useAppState } from '~/context/useAppState';
+import { type Color } from '~/types';
 import styles from './page.module.css';
 
-const ChartPage = () => {
+const CustomLegend = ({ data }: { data: Color[] }) => {
+  return (
+    <div className={styles.legend}>
+      {data.map((item, index) => (
+        <li
+          key={index}
+          style={{
+            alignItems: 'center',
+            display: 'flex',
+            marginBottom: '10px',
+          }}>
+          <span
+            style={{
+              backgroundColor: item.hex,
+              height: '20px',
+              marginRight: '10px',
+              width: '20px',
+            }}
+          />
+          {item.count}
+        </li>
+      ))}
+    </div>
+  );
+};
+
+const PieChartPage = () => {
   const {
     state: { colors, isLoading },
   } = useAppState();
@@ -26,12 +53,12 @@ const ChartPage = () => {
             cx="50%"
             cy="50%"
             labelLine={false}
-            label={({ count, percent, x, y }) => (
+            label={({ percent, x, y }) => (
               <g>
                 <rect
-                  x={x - 40}
+                  x={x - 20}
                   y={y - 12.5}
-                  width={80}
+                  width={40}
                   height={25}
                   fill="rgba(0, 0, 0, 0.5)"
                 />
@@ -41,7 +68,7 @@ const ChartPage = () => {
                   fill="white"
                   textAnchor="middle"
                   dominantBaseline="central">
-                  {`${count} - ${(percent * 100).toFixed(0)}%`}
+                  {`${(percent * 100).toFixed(0)}%`}
                 </text>
               </g>
             )}
@@ -53,8 +80,9 @@ const ChartPage = () => {
           </Pie>
         </PieChart>
       </ResponsiveContainer>
+      <CustomLegend data={colors} />
     </div>
   );
 };
 
-export default ChartPage;
+export default PieChartPage;

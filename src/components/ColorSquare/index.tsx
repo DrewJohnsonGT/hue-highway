@@ -33,7 +33,6 @@ export const ColorSquare = ({
       {isEditMode && (
         <FaRegTimesCircle
           className={styles.removeButton}
-          style={{ backgroundColor: contrastingColor }}
           onClick={handleRemove}
         />
       )}
@@ -42,6 +41,7 @@ export const ColorSquare = ({
         style={{
           backgroundColor: color,
           border: `1px solid ${contrastingColor}`,
+          opacity: isEditMode ? 0 : 1,
         }}
       />
       <p className={styles.count}>{count}</p>

@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
   FaBars,
+  FaChartBar,
   FaChartPie,
   FaChevronDown,
   FaListOl,
@@ -72,22 +73,24 @@ export const Header = () => {
             <FaSortAmountUp />
             Sort
           </div>
-          {pathname === '/counter' && (
-            <Link href={'/chart'} style={{ textDecoration: 'none' }}>
-              <div className={styles.menuItem}>
-                <FaChartPie size={20} />
-                Chart
-              </div>
-            </Link>
-          )}
-          {pathname === '/chart' && (
-            <Link href={'/counter'} style={{ textDecoration: 'none' }}>
-              <div className={styles.menuItem}>
-                <FaListOl />
-                Counter
-              </div>
-            </Link>
-          )}
+          <Link href={'/counter'} style={{ textDecoration: 'none' }}>
+            <div className={styles.menuItem}>
+              <FaListOl />
+              Counter
+            </div>
+          </Link>
+          <Link href={'/pie'} style={{ textDecoration: 'none' }}>
+            <div className={styles.menuItem}>
+              <FaChartPie size={20} />
+              Pie
+            </div>
+          </Link>
+          <Link href={'/bar'} style={{ textDecoration: 'none' }}>
+            <div className={styles.menuItem}>
+              <FaChartBar size={20} />
+              Bar
+            </div>
+          </Link>
           <div
             className={styles.menuItem}
             style={{ borderBottom: 'none' }}

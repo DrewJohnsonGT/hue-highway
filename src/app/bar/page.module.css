@@ -8,3 +8,12 @@
 .total {
   margin-bottom: 0;
 }
+
+.legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
