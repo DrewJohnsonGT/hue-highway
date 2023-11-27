@@ -39,6 +39,10 @@ export const Header = () => {
     }
   };
 
+  const handleClose = () => {
+    setIsMenuOpen(false);
+  };
+
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
@@ -62,7 +66,7 @@ export const Header = () => {
         {isMenuOpen ? <FaChevronDown /> : <FaBars />}
       </div>
       {isMenuOpen && (
-        <div className={styles.menu} ref={menuRef}>
+        <div className={styles.menu} ref={menuRef} onClick={handleClose}>
           <div
             className={styles.menuItem}
             onClick={() => {
