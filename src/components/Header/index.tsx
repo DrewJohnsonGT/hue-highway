@@ -13,7 +13,6 @@ import {
 } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { SITE_TITLE } from '~/constants';
 import { ActionType, useAppState } from '~/context/useAppState';
 import styles from './index.module.css';
@@ -23,7 +22,6 @@ export const Header = () => {
     dispatch,
     state: { isEditMode },
   } = useAppState();
-  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
