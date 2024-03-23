@@ -9,6 +9,7 @@ import {
   FaListOl,
   FaRegCheckCircle,
   FaRegEdit,
+  FaRoad,
   FaSortAmountUp,
 } from 'react-icons/fa';
 import Image from 'next/image';
@@ -91,6 +92,12 @@ export const Header = () => {
             <div className={styles.menuItem}>
               <FaChartBar size={20} />
               Bar
+            </div>
+          </Link>
+          <Link href={'/trips'} style={{ textDecoration: 'none' }}>
+            <div className={styles.menuItem}>
+              <FaRoad size={20} />
+              Trips
             </div>
           </Link>
           <div

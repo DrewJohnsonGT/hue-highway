@@ -3,3 +3,10 @@ export interface Color {
   hex: string;
   count: number;
 }
+
+export interface Trip {
+  created: string;
+  colors: Color[];
+  lastUpdated: string;
+  id: string;
+}

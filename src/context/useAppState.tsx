@@ -8,12 +8,14 @@ import {
   useReducer,
 } from 'react';
 import { DEFAULT_COLORS } from '~/constants';
+import { type Trip } from '~/types';
 import { useLocalStorage } from '~/util/useLocalStorage';
 
 const DEFAULT_STATE = {
   colors: DEFAULT_COLORS,
   isEditMode: false,
   isLoading: true,
+  trips: [] as Trip[],
 };
 
 export type State = typeof DEFAULT_STATE;
@@ -26,6 +28,8 @@ export enum ActionType {
   Increment = 'INCREMENT',
   Decrement = 'DECREMENT',
   MergeLocalStorageState = 'MERGE_LOCAL_STORAGE_STATE',
+  SaveTrip = 'SAVE_TRIP',
+  LoadTrip = 'LOAD_TRIP',
 }
 
 interface Payloads {
@@ -36,6 +40,7 @@ interface Payloads {
   [ActionType.Increment]: string;
   [ActionType.Decrement]: string;
   [ActionType.MergeLocalStorageState]: State;
+  [ActionType.SaveTrip]: never;
 }
 export type ActionMap<M extends Record<string, any>> = {
   [Key in keyof M]: M[Key] extends undefined
@@ -116,6 +121,19 @@ const reducer = (state: typeof DEFAULT_STATE, action: Actions) => {
       return {
         ...state,
         colors: newColors,
+      };
+    }
+    case ActionType.SaveTrip: {
+      const newTrip = {
+        colors: state.colors,
+        created: new Date().toISOString(),
+        id: Math.random().toString(),
+        lastUpdated: new Date().toISOString(),
+      };
+      return {
+        ...state,
+        isLoading: true,
+        trips: [newTrip, ...state.trips],
       };
     }
     case ActionType.MergeLocalStorageState: {
