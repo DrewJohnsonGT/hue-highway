@@ -1,3 +1,5 @@
+# Hue Highway
+
 Fun little roadtrip app for counting the freqency of different color trucks on
 the road
 
