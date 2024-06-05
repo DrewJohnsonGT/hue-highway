@@ -40,7 +40,8 @@ interface Payloads {
   [ActionType.Increment]: string;
   [ActionType.Decrement]: string;
   [ActionType.MergeLocalStorageState]: State;
-  [ActionType.SaveTrip]: never;
+  [ActionType.SaveTrip]: string;
+  [ActionType.LoadTrip]: Trip;
 }
 export type ActionMap<M extends Record<string, any>> = {
   [Key in keyof M]: M[Key] extends undefined
@@ -129,11 +130,18 @@ const reducer = (state: typeof DEFAULT_STATE, action: Actions) => {
         created: new Date().toISOString(),
         id: Math.random().toString(),
         lastUpdated: new Date().toISOString(),
+        name: action.payload,
       };
       return {
         ...state,
-        isLoading: true,
         trips: [newTrip, ...state.trips],
+      };
+    }
+    case ActionType.LoadTrip: {
+      return {
+        ...state,
+        colors: action.payload.colors,
+        isLoading: false,
       };
     }
     case ActionType.MergeLocalStorageState: {

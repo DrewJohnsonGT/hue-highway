@@ -18,3 +18,8 @@
 .button:hover {
   background-color: var(--green-dark);
 }
+
+.button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

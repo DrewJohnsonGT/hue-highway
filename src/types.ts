@@ -9,4 +9,5 @@ export interface Trip {
   colors: Color[];
   lastUpdated: string;
   id: string;
+  name: string;
 }

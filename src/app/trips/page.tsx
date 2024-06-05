@@ -1,11 +1,13 @@
 'use client';
 
+import { useState } from 'react';
 import { ResponsiveContainer } from 'recharts';
-import { Button, Loading } from '~/components';
+import { Button, Loading, TextInput } from '~/components';
 import { ActionType, useAppState } from '~/context/useAppState';
 import styles from './page.module.css';
 
 const TripsPage = () => {
+  const [newTripName, setNewTripName] = useState<string>('');
   const {
     dispatch,
     state: { isLoading, trips },
@@ -16,10 +18,16 @@ const TripsPage = () => {
     <div className={styles.root}>
       <h2 className={styles.total}>Past Trips</h2>
       <ResponsiveContainer width="100%" height={400}>
-        <>
+        <div className={styles.newTrip}>
+          <TextInput
+            label="Trip Name"
+            value={newTripName}
+            onChange={setNewTripName}
+          />
           <Button
+            disabled={!newTripName}
             onClick={() => {
-              dispatch({ type: ActionType.SaveTrip });
+              dispatch({ payload: newTripName, type: ActionType.SaveTrip });
             }}>
             Add Trip
           </Button>
@@ -27,11 +35,10 @@ const TripsPage = () => {
             return (
               <div key={trip.id} className={styles.trip}>
                 <h3>{trip.name}</h3>
-                <p>{trip.description}</p>
               </div>
             );
           })}
-        </>
+        </div>
       </ResponsiveContainer>
     </div>
   );

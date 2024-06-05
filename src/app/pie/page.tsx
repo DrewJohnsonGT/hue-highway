@@ -15,11 +15,13 @@ const CustomLegend = ({ data }: { data: Color[] }) => {
           style={{
             alignItems: 'center',
             display: 'flex',
+            fontWeight: 'bold',
             marginBottom: '10px',
           }}>
           <span
             style={{
               backgroundColor: item.hex,
+              border: '2px solid black',
               height: '20px',
               marginRight: '10px',
               width: '20px',
@@ -73,6 +75,8 @@ const PieChartPage = () => {
               </g>
             )}
             outerRadius={150}
+            stroke="black"
+            strokeWidth={2}
             dataKey="count">
             {colorsWithCount.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={entry.hex} />

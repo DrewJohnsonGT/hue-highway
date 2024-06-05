@@ -10,10 +10,11 @@
 }
 
 .legend {
+  margin: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.25rem;
   margin-top: 1rem;
 }
