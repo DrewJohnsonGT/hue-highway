@@ -1,7 +1,7 @@
 # Hue Highway
 
-Fun little roadtrip app for counting the freqency of different color trucks on
-the road
+Quick little app made in a few hours pre-roadtrip for counting the freqency of
+different color trucks on the road
 
 ![IMG_4641](https://github.com/DrewJohnsonGT/hue-highway/assets/19674743/0c8192a5-75ba-460f-af69-09d418f95985)
 ![IMG_4641](https://github.com/DrewJohnsonGT/hue-highway/assets/19674743/fd83250c-662f-42ed-918e-14a7a6d7f082)
