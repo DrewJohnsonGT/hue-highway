@@ -37,6 +37,7 @@ interface Payloads {
   [ActionType.SaveTrip]: string;
   [ActionType.LoadTrip]: Trip;
 }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ActionMap<M extends Record<string, any>> = {
   [Key in keyof M]: M[Key] extends undefined
     ? {
@@ -170,7 +171,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       payload: localStorageState,
       type: ActionType.MergeLocalStorageState,
     });
-  }, [dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return <AppContext.Provider value={{ dispatch, state: localStorageState }}>{children}</AppContext.Provider>;
 };

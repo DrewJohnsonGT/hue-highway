@@ -58,7 +58,7 @@ const PieChartPage = () => {
               <g>
                 <rect x={x - 20} y={y - 12.5} width={40} height={25} fill="rgba(0, 0, 0, 0.5)" />
                 <text x={x} y={y} fill="white" textAnchor="middle" dominantBaseline="central">
-                  {`${(percent * 100).toFixed(0)}%`}
+                  {`${(percent ?? 0 * 100).toFixed(0)}%`}
                 </text>
               </g>
             )}
