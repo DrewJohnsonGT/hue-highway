@@ -1,9 +1,9 @@
 import styles from './index.module.css';
 
 interface ButtonProps {
-  onClick: () => void;
   children: React.ReactNode;
   disabled?: boolean;
+  onClick: () => void;
 }
 
 export const Button = ({ children, disabled, onClick }: ButtonProps) => {

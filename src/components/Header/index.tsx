@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import {
   FaBars,
   FaChartBar,
@@ -12,10 +14,9 @@ import {
   FaRoad,
   FaSortAmountUp,
 } from 'react-icons/fa';
-import Image from 'next/image';
-import Link from 'next/link';
 import { SITE_TITLE } from '~/constants';
 import { ActionType, useAppState } from '~/context/useAppState';
+
 import styles from './index.module.css';
 
 export const Header = () => {
@@ -31,11 +32,7 @@ export const Header = () => {
   };
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (
-      menuRef.current &&
-      event.target instanceof Node &&
-      !menuRef.current.contains(event.target)
-    ) {
+    if (menuRef.current && event.target instanceof Node && !menuRef.current.contains(event.target)) {
       setIsMenuOpen(false);
     }
   };
@@ -54,13 +51,7 @@ export const Header = () => {
   return (
     <div className={styles.root}>
       <span className={styles.logoAndTitle}>
-        <Image
-          src="/images/logo.jpg"
-          width={50}
-          height={50}
-          alt="logo"
-          className={styles.logo}
-        />
+        <Image src="/images/logo.jpg" width={50} height={50} alt="logo" className={styles.logo} />
         <h1 className={styles.title}>{SITE_TITLE}</h1>
       </span>
       <div className={styles.floatingActionButton} onClick={toggleMenu}>
@@ -72,7 +63,8 @@ export const Header = () => {
             className={styles.menuItem}
             onClick={() => {
               dispatch({ type: ActionType.SortColors });
-            }}>
+            }}
+          >
             <FaSortAmountUp />
             Sort
           </div>
@@ -105,7 +97,8 @@ export const Header = () => {
             style={{ borderBottom: 'none' }}
             onClick={() => {
               dispatch({ type: ActionType.ToggleEditMode });
-            }}>
+            }}
+          >
             {isEditMode ? <FaRegCheckCircle /> : <FaRegEdit />}
             {isEditMode ? 'Done' : 'Edit'}
           </div>

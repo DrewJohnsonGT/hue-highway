@@ -1,18 +1,10 @@
 'use client';
 
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Cell,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts';
+import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { Loading } from '~/components';
 import { useAppState } from '~/context/useAppState';
 import { type Color } from '~/types';
+
 import styles from './page.module.css';
 
 const CustomLegend = ({ data }: { data: Color[] }) => {
@@ -26,7 +18,8 @@ const CustomLegend = ({ data }: { data: Color[] }) => {
             display: 'flex',
             fontWeight: 'bold',
             marginBottom: '10px',
-          }}>
+          }}
+        >
           <span
             style={{
               backgroundColor: item.hex,
@@ -48,10 +41,7 @@ const BarChartPage = () => {
     state: { colors, isLoading },
   } = useAppState();
   const colorsWithCount = colors.filter((color) => color.count > 0);
-  const totalCount = colorsWithCount.reduce(
-    (acc, color) => acc + color.count,
-    0,
-  );
+  const totalCount = colorsWithCount.reduce((acc, color) => acc + color.count, 0);
 
   return isLoading ? (
     <Loading />

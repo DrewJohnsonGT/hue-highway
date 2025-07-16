@@ -1,35 +1,43 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "isolatedModules": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "noEmit": true,
-    "resolveJsonModule": true,
+    /* Base Options: */
+    "esModuleInterop": true,
     "skipLibCheck": true,
+    "target": "es2022",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+
+    /* Strictness */
     "strict": true,
-    "target": "ESNext",
-    "useDefineForClassFields": true,
+    "noUncheckedIndexedAccess": true,
+    "checkJs": true,
+
+    /* Bundled projects */
+    "lib": ["dom", "dom.iterable", "ESNext"],
+    "noEmit": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "preserve",
+    "plugins": [{ "name": "next" }],
+    "incremental": true,
+
+    /* Path Aliases */
+    "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"]
-    },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "esModuleInterop": true,
-    "jsx": "preserve",
-    "allowJs": true,
-    "forceConsistentCasingInFileNames": true,
-    "incremental": true
+    }
   },
   "include": [
-    "./src",
-    "./dist/types/**/*.ts",
-    "./next-env.d.ts",
-    "public/assets",
+    "eslint.config.js",
+    "prettier.config.js",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.cjs",
+    "**/*.js",
+    "bin/**/*.ts",
     ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]

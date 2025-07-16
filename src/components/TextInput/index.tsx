@@ -1,9 +1,9 @@
 import styles from './index.module.css';
 
 interface TextInputProps {
-  value: string;
   label: string;
   onChange: (value: string) => void;
+  value: string;
 }
 
 export const TextInput = ({ label, onChange, value }: TextInputProps) => {

@@ -1,13 +1,13 @@
 export interface Color {
-  id: string;
-  hex: string;
   count: number;
+  hex: string;
+  id: string;
 }
 
 export interface Trip {
-  created: string;
   colors: Color[];
-  lastUpdated: string;
+  created: string;
   id: string;
+  lastUpdated: string;
   name: string;
 }

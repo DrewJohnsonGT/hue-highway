@@ -1,12 +1,6 @@
 'use client';
 
-import {
-  createContext,
-  type ReactNode,
-  useContext,
-  useEffect,
-  useReducer,
-} from 'react';
+import { createContext, useContext, useEffect, useReducer, type ReactNode } from 'react';
 import { DEFAULT_COLORS } from '~/constants';
 import { type Trip } from '~/types';
 import { useLocalStorage } from '~/util/useLocalStorage';
@@ -21,15 +15,15 @@ const DEFAULT_STATE = {
 export type State = typeof DEFAULT_STATE;
 
 export enum ActionType {
-  ToggleEditMode = 'TOGGLE_EDIT_MODE',
-  SortColors = 'SORT_COLORS',
-  RemoveColor = 'REMOVE_COLOR',
   AddNewColor = 'ADD_NEW_COLOR',
-  Increment = 'INCREMENT',
   Decrement = 'DECREMENT',
-  MergeLocalStorageState = 'MERGE_LOCAL_STORAGE_STATE',
-  SaveTrip = 'SAVE_TRIP',
+  Increment = 'INCREMENT',
   LoadTrip = 'LOAD_TRIP',
+  MergeLocalStorageState = 'MERGE_LOCAL_STORAGE_STATE',
+  RemoveColor = 'REMOVE_COLOR',
+  SaveTrip = 'SAVE_TRIP',
+  SortColors = 'SORT_COLORS',
+  ToggleEditMode = 'TOGGLE_EDIT_MODE',
 }
 
 interface Payloads {
@@ -49,8 +43,8 @@ export type ActionMap<M extends Record<string, any>> = {
         type: Key;
       }
     : {
-        type: Key;
         payload: M[Key];
+        type: Key;
       };
 };
 
@@ -72,9 +66,7 @@ const reducer = (state: typeof DEFAULT_STATE, action: Actions) => {
       };
     }
     case ActionType.RemoveColor: {
-      const newColors = state.colors.filter(
-        (color) => color.id !== action.payload,
-      );
+      const newColors = state.colors.filter((color) => color.id !== action.payload);
       return {
         ...state,
         colors: newColors,
@@ -165,29 +157,22 @@ const AppContext = createContext<{
 });
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
-  const [localStorageState, setLocalStorageState] = useLocalStorage(
-    'colors',
-    DEFAULT_STATE,
-  );
+  const [localStorageState, setLocalStorageState] = useLocalStorage('colors', DEFAULT_STATE);
 
   const [state, dispatch] = useReducer(reducer, DEFAULT_STATE);
 
   useEffect(() => {
     setLocalStorageState(state);
-  }, [state]);
+  }, [state, setLocalStorageState]);
 
   useEffect(() => {
     dispatch({
       payload: localStorageState,
       type: ActionType.MergeLocalStorageState,
     });
-  }, []);
+  }, [dispatch]);
 
-  return (
-    <AppContext.Provider value={{ dispatch, state: localStorageState }}>
-      {children}
-    </AppContext.Provider>
-  );
+  return <AppContext.Provider value={{ dispatch, state: localStorageState }}>{children}</AppContext.Provider>;
 };
 
 export const useAppState = () => {

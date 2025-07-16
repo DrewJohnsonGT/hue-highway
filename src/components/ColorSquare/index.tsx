@@ -1,25 +1,19 @@
-import { FaMinus, FaPlus, FaRegTimesCircle } from 'react-icons/fa';
 import clsx from 'clsx';
+import { FaMinus, FaPlus, FaRegTimesCircle } from 'react-icons/fa';
 import { getContrastColor } from '~/util/getContrastColor';
+
 import styles from './index.module.css';
 
 interface ColorSquareProps {
   color: string;
   count: number;
-  isEditMode: boolean;
+  decrement: () => void;
   handleRemove: () => void;
   increment: () => void;
-  decrement: () => void;
+  isEditMode: boolean;
 }
 
-export const ColorSquare = ({
-  color,
-  count,
-  decrement,
-  handleRemove,
-  increment,
-  isEditMode,
-}: ColorSquareProps) => {
+export const ColorSquare = ({ color, count, decrement, handleRemove, increment, isEditMode }: ColorSquareProps) => {
   const contrastingColor = getContrastColor(color);
   return (
     <div
@@ -29,13 +23,9 @@ export const ColorSquare = ({
         backgroundColor: `${color}AA`,
         borderColor: contrastingColor,
         color: contrastingColor,
-      }}>
-      {isEditMode && (
-        <FaRegTimesCircle
-          className={styles.removeButton}
-          onClick={handleRemove}
-        />
-      )}
+      }}
+    >
+      {isEditMode && <FaRegTimesCircle className={styles.removeButton} onClick={handleRemove} />}
       <div
         className={styles.color}
         style={{
@@ -45,9 +35,7 @@ export const ColorSquare = ({
         }}
       />
       <p className={styles.count}>{count}</p>
-      <div
-        className={styles.buttonWrapper}
-        style={{ borderTop: `1px solid ${contrastingColor}` }}>
+      <div className={styles.buttonWrapper} style={{ borderTop: `1px solid ${contrastingColor}` }}>
         <div className={styles.button} onClick={decrement}>
           <FaMinus />
         </div>

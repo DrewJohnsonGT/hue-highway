@@ -2,6 +2,7 @@
 
 import { AddColor, ColorSquare, Loading } from '~/components';
 import { ActionType, useAppState } from '~/context/useAppState';
+
 import styles from './page.module.css';
 
 const CountingPage = () => {

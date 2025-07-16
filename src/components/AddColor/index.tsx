@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { SwatchesPicker } from 'react-color';
 import { Button } from '~/components/Button';
+
 import styles from './index.module.css';
 
 interface AddColorProps {
@@ -10,8 +11,7 @@ interface AddColorProps {
 }
 
 export const AddColor = ({ onSelectNewColor }: AddColorProps) => {
-  const [isNewColorPickerOpen, setIsNewColorPickerOpen] =
-    useState<boolean>(false);
+  const [isNewColorPickerOpen, setIsNewColorPickerOpen] = useState<boolean>(false);
   return (
     <div className={styles.root}>
       {isNewColorPickerOpen && (
@@ -28,7 +28,8 @@ export const AddColor = ({ onSelectNewColor }: AddColorProps) => {
       <Button
         onClick={() => {
           setIsNewColorPickerOpen(!isNewColorPickerOpen);
-        }}>
+        }}
+      >
         Add New Color
       </Button>
     </div>
